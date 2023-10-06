@@ -10,9 +10,37 @@
   <p th:if="${name}"> <!--条件指定-->
     Hi [[${name}]]
   </p>
-  <p>
-    Hello
-  </p>
+
+  <div th:unless="${result}">
+    <h2 align="center">じゃんけんをやるよ</h2>
+    <p align="center">&emsp;手を選んでください</p>
+    <br />
+    <div align="center">
+      <button onclick="location.href='/JankenGame/gu'">
+        グー
+      </button>
+      &emsp;
+      <button onclick="location.href='/JankenGame/choki'">
+        チョキ
+      </button>
+      &emsp;
+      <button onclick="location.href='/JankenGame/pa'">
+        パー
+      </button>
+    </div>
+  </div>
+
+  <div th:if="${result}">
+    <p align="center">
+      あなたの手は [[${yourHand}]]
+    </p>
+    <p align="center">
+      CPUの手は [[${cpuHand}]]
+    </p>
+    <p align="center">
+      [[${result}]]
+    </p>
+  </div>
 </body>
 
 </html>
