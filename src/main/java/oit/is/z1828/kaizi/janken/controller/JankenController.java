@@ -25,14 +25,17 @@ public class JankenController {
   public String JankenGame(@PathVariable String hand, ModelMap model) {
 
     String result;
-    String yourHand = hand;
-    String cpuHand = "gu";
+    String yourHand;
+    String cpuHand = "グー";
 
-    if (yourHand.equals("pa")) {
+    if (hand.equals("pa")) {
+      yourHand = "パー";
       result = "win";
-    } else if (yourHand.equals("gu")) {
+    } else if (hand.equals("gu")) {
+      yourHand = "グー";
       result = "draw";
     } else {
+      yourHand = "チョキ";
       result = "lose";
     }
     model.addAttribute("yourHand", yourHand);
