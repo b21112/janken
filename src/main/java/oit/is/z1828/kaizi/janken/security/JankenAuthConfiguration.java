@@ -19,7 +19,12 @@ public class JankenAuthConfiguration {
         .logout(logout -> logout.logoutUrl("/logout")
             .logoutSuccessUrl("/"))
         .authorizeHttpRequests(authz -> authz.requestMatchers(AntPathRequestMatcher.antMatcher("/janken/**"))
-            .authenticated().requestMatchers(AntPathRequestMatcher.antMatcher("/**")).permitAll());
+            .authenticated().requestMatchers(AntPathRequestMatcher.antMatcher("/**")).permitAll())
+        .csrf(csrf -> csrf
+            .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/*")))
+        .headers(headers -> headers
+            .frameOptions(frameOptions -> frameOptions
+                .sameOrigin()));
 
     return http.build();
   }
@@ -32,7 +37,9 @@ public class JankenAuthConfiguration {
         .roles("USER").build();
     UserDetails user2 = User.withUsername("user2")
         .password("{bcrypt}$2y$10$DPZvoBEzZrecXwgAhq/69OoHbWam2Kq0taE9gXsEHJ4q9yRzGtvHO").roles("USER").build();
+    UserDetails user3 = User.withUsername("ほんだ")
+        .password("{bcrypt}$2y$10$AQOcWiX2.MA6Czw4p4OYzuw25.7Vcmgav6gaQDKFsu8opn8BdrjDG").roles("USER").build();
 
-    return new InMemoryUserDetailsManager(user1, user2);
+    return new InMemoryUserDetailsManager(user1, user2, user3);
   }
 }

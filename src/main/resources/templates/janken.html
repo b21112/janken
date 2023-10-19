@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
-</htmlxmlns:th>
 
 <head>
   <meta charset="utf-8">
@@ -8,15 +7,14 @@
 </head>
 
 <body>
-  <p th:if="${name}"> <!--条件指定-->
-    Hi [[${name}]]
-  </p>
+  <p>Hi [[${loginUser}]]</p>
+  <h3>エントリー</h3>
   <div>
-    <p>エントリー</p>
     <ul>
-      <li th:each="user : ${entry.users}">[[${user}]]</li>
+      <li th:each="user:${users}">[[${user.name}]]</li>
     </ul>
-    <p>Hi [[${loginUser}]]</p>
+  </div>
+
   </div>
   <div>
     <h2 align="center">じゃんけんをやるよ</h2>
