@@ -7,8 +7,8 @@
 </head>
 
 <body>
-  <h1>Match</h1>
-  <h2>
+  <h1 align="center">Match</h1>
+  <h2 align="center">
     [[${loginUser}]] VS [[${user.name}]]
   </h2>
 
@@ -16,32 +16,32 @@
     <p align="center">&emsp;手を選んでください</p>
     <br />
     <div align="center">
-      <button onclick="location.href='/JankenGame/gu'">
+      <button onclick="location.href='/fight?hand=gu'">
         グー
       </button>
       &emsp;
-      <button onclick="location.href='/JankenGame/choki'">
+      <button onclick="location.href='/fight?hand=choki'">
         チョキ
       </button>
       &emsp;
-      <button onclick="location.href='/JankenGame/pa'">
+      <button onclick="location.href='/fight?hand=pa'">
         パー
       </button>
     </div>
   </div>
 
-  <div th:if="${result}">
+  <div th:if="${result_flag}">
     <p align="center">
-      あなたの手は [[${yourHand}]]
+      あなたの手は [[${match.user1Hand}]]
     </p>
     <p align="center">
-      CPUの手は [[${cpuHand}]]
+      CPUの手は [[${match.user2Hand}]]
     </p>
-    <p align="center">勝敗：
-      [[${result}]]
+    <p align="center">
+      結果：[[${match.result}]]
     </p>
   </div>
-
+  <br />
   <a href="/janken">戻る</a>
 
 </body>

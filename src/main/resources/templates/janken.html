@@ -20,12 +20,29 @@
   </div>
 
   <h3>試合結果</h3>
-  <ul>
-    <li th:each="match:${matches}">
-      ID:[[${match.getId}]]
-    </li>
-  </ul>
-
+  <div th:each="match:${matches}">
+    <tr>
+      <td>
+        id:[[${match.id}]]
+      </td>
+      <td>
+        user1:[[${match.user1}]]
+      </td>
+      <td>
+        user2:[[${match.user2}]]
+      </td>
+      <td>
+        user1の手:[[${match.user1Hand}]]
+      </td>
+      <td>
+        user2の手:[[${match.user2Hand}]]
+      </td>
+      <td>
+        結果:[[${match.result}]]
+      </td>
+    </tr>
+  </div>
+  <br />
   <a href="/logout">ログアウト</a>
 </body>
 
