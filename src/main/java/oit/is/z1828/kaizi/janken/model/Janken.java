@@ -10,21 +10,21 @@ public class Janken {
     }
     if (yourHand.equals("グー")) {
       if (cpuHand.equals("チョキ")) {
-        return "win";
+        return "win (user1)";
       }
     }
     if (yourHand.equals("チョキ")) {
       if (cpuHand.equals("パー")) {
-        return "win";
+        return "win (user1)";
       }
     }
     if (yourHand.equals("パー")) {
       if (cpuHand.equals("グー")) {
-        return "win";
+        return "win (user1)";
       }
     }
 
-    return "lose";
+    return "lose (user1)";
   }
 
   public static String setYourHand(String hand) {
