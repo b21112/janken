@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
+
+<head>
+  <meta charset="utf-8">
+  <title>Match</title>
+</head>
+
+<body>
+  <h1>Match</h1>
+  <h2>
+    [[${loginUser}]] VS [[${user.name}]]
+  </h2>
+
+  <div>
+    <p align="center">&emsp;手を選んでください</p>
+    <br />
+    <div align="center">
+      <button onclick="location.href='/JankenGame/gu'">
+        グー
+      </button>
+      &emsp;
+      <button onclick="location.href='/JankenGame/choki'">
+        チョキ
+      </button>
+      &emsp;
+      <button onclick="location.href='/JankenGame/pa'">
+        パー
+      </button>
+    </div>
+  </div>
+
+  <div th:if="${result}">
+    <p align="center">
+      あなたの手は [[${yourHand}]]
+    </p>
+    <p align="center">
+      CPUの手は [[${cpuHand}]]
+    </p>
+    <p align="center">勝敗：
+      [[${result}]]
+    </p>
+  </div>
+
+  <a href="/janken">戻る</a>
+
+</body>
+
+</html>

@@ -11,11 +11,21 @@
   <h3>エントリー</h3>
   <div>
     <ul>
-      <li th:each="user:${users}">[[${user.name}]]</li>
+      <li th:each="user:${users}">
+        <a th:href="@{/match(id=${user.id})}">
+          [[${user.name}]]
+        </a>
+      </li>
     </ul>
   </div>
 
-  </div>
+  <h3>試合結果</h3>
+  <ul>
+    <li th:each="match:${matches}">
+      ID:[[${match.getId}]]
+    </li>
+  </ul>
+
   <div>
     <h2 align="center">じゃんけんをやるよ</h2>
     <p align="center">&emsp;手を選んでください</p>
@@ -35,17 +45,7 @@
     </div>
   </div>
 
-  <div th:if="${result}">
-    <p align="center">
-      あなたの手は [[${yourHand}]]
-    </p>
-    <p align="center">
-      CPUの手は [[${cpuHand}]]
-    </p>
-    <p align="center">勝敗：
-      [[${result}]]
-    </p>
-  </div>
+
   <a href="/logout">ログアウト</a>
 </body>
 
