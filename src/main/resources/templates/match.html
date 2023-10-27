@@ -12,21 +12,32 @@
     [[${loginUser}]] VS [[${user.name}]]
   </h2>
 
-  <div>
+  <div th:if="${user.id}">
     <p align="center">&emsp;手を選んでください</p>
     <br />
     <div align="center">
-      <button onclick="location.href='/fight?hand=gu'">
+      <!-- <button onclick="location.href='/fight?hand=gu(id=${user.id})'">
         グー
       </button>
       &emsp;
-      <button onclick="location.href='/fight?hand=choki'">
+      <button onclick="location.href='/fight?hand=choki(id=${user.id})'">
         チョキ
       </button>
       &emsp;
-      <button onclick="location.href='/fight?hand=pa'">
+      <button onclick="location.href='/fight?hand=pa(id=${user.id})'">
         パー
-      </button>
+      </button>-->
+      <a th:href="@{/fight?hand=gu(id=${user.id})}">
+        グー
+      </a>
+      &emsp;
+      <a th:href="@{/fight?hand=pa(id=${user.id})}">
+        パー
+      </a>
+      &emsp;
+      <a th:href="@{/fight?hand=choki(id=${user.id})}">
+        チョキ
+      </a>
     </div>
   </div>
 
