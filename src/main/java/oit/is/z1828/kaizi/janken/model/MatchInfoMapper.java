@@ -8,13 +8,12 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
-public interface MatchMapper {
+public interface MatchInfoMapper {
 
-  @Select("SELECT * from matches")
-  ArrayList<Match> selectAllByMatches();
+  @Select("SELECT * from matchInfo")
+  ArrayList<MatchInfo>selectAllByMatchInfos();
 
-  @Insert("INSERT INTO matches (user1,user2,user1Hand,user2Hand,isActive,result)  VALUES (#{user1},#{user2},#{user1Hand},#{user2Hand},#{isActive},#{result});")
+  @Insert("INSERT INTO matchInfo (user1,user2,user1Hand,isActive)  VALUES (#{user1},#{user2},#{user1Hand},#{isActive});")
   @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
-  void insertMatch(Match match);
-
+  void insertMatchInfo(MatchInfo matchInfo);
 }

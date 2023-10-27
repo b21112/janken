@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import oit.is.z1828.kaizi.janken.model.Janken;
 import oit.is.z1828.kaizi.janken.model.Match;
+import oit.is.z1828.kaizi.janken.model.MatchInfo;
 import oit.is.z1828.kaizi.janken.model.MatchMapper;
+import oit.is.z1828.kaizi.janken.model.MatchInfoMapper;
 import oit.is.z1828.kaizi.janken.model.User;
 import oit.is.z1828.kaizi.janken.model.UserMapper;
 
@@ -21,6 +23,8 @@ public class JankenController {
   UserMapper userMapper;
   @Autowired
   MatchMapper matchMapper;
+  @Autowired
+  MatchInfoMapper matchInfoMapper;
 
   private String loginUser;
 
@@ -50,33 +54,29 @@ public class JankenController {
   }
 
   @GetMapping("/fight")
-  public String JankenGame(@RequestParam String hand, ModelMap model, Principal prin) {
+  public String JankenGame(@RequestParam String hand, @RequestParam Integer id, ModelMap model, Principal prin) {
 
-    String result;
-    String yourHand;
-    String cpuHand;
-    boolean result_flag = true;
-    Match match = new Match();
-    User cpu = userMapper.selectById(1);
-    User user = userMapper.selectByname(loginUser);
+    boolean isActive = true;
+    MatchInfo matchInfo = new MatchInfo();
+    User user1 = userMapper.selectByname(loginUser);
 
-    yourHand = Janken.setYourHand(hand);
-    cpuHand = Janken.setCpuHand();
-    result = Janken.judgeGame(yourHand, cpuHand);
+    matchInfo.setUser1(user1.getId());
+    matchInfo.setUser2(id);
+    matchInfo.setUser1Hand(hand);
+    matchInfo.setActive(isActive);
+    matchInfoMapper.insertMatchInfo(matchInfo);
 
-    match.setUser1(user.getId());
-    match.setUser2(cpu.getId());
-    match.setUser1Hand(yourHand);
-    match.setUser2Hand(cpuHand);
-    match.setResult(result);
-    matchMapper.insertMatch(match);
-
-    model.addAttribute("user", cpu);
     model.addAttribute("loginUser", loginUser);
-    model.addAttribute("result_flag", result_flag);
-    model.addAttribute("match", match);
 
-    return "match.html";
+    model.addAttribute("matchInfo", matchInfo);
+
+    return "wait.html";
   }
 
 }
+
+// yourHand = Janken.setYourHand(hand);
+// cpuHand = Janken.setCpuHand();
+// result = Janken.judgeGame(yourHand, cpuHand);
+// model.addAttribute("result_flag", result_flag);
+// model.addAttribute("user",cpu);
