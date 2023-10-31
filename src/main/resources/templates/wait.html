@@ -4,17 +4,46 @@
 <head>
   <meta charset="utf-8">
   <title>Match</title>
+  <script>
+    window.onload = function () {
+
+      var sse = new EventSource('/result');
+      sse.onmessage = function (event) {
+        console.log(event.data);
+        // var match_list = JSON.parse(event.data);
+        // var match_table = "";
+        // var bgn_tr = "<tr>";
+        // var end_tr = "</tr>";
+        // var idx = "<td>" + i + "</td>";
+        // var user1 = "<td>" + matches_list.user1 + "</td>";
+        // var user2 = "<td>" + match_list.user2 + "</td>";
+        // var user1Hand = "<td>" + match_list.user1Hand + "</td>";
+        // var user2Hand = "<td>" + match_list.user2Hand + "</td>";
+        // matches_table = matches_table + bgn_tr + idx + user1 + user2 + user1Hand + user2Hand + end_tr;
+        // console.log(matches_table);
+        // var tbody = document.getElementById("matches_list");
+        // tbody.innerHTML = matches_table;
+
+        document.getElementById("h2").textContent = "結果";
+        document.getElementById("p1").textContent = event.data;
+      }
+    }
+  </script>
 </head>
 
 <body>
-  <div th:if="matchInfo">
+  <div th:if="${matchInfo}">
     <p>
       Hi [[${loginUser}]]
     </p>
     <h2>
       相手の手を待っています
     </h2>
+    <h2 id="h2"></h2>
+    <p id="p1"></p>
+    <a href="/janken">戻る</a>
   </div>
+
 
 </body>
 
